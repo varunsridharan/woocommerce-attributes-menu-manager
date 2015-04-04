@@ -14,10 +14,10 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  
-    Plugin Name: Woocommerce Attributes Menu
+    Plugin Name: WooCommerce Attributes Menu Manager
     Plugin URI: http://varunsridharan.in/
-    Description: Woocommerce Attributes Menu
-    Version: 0.2
+    Description: WooCommerce Attributes Menu Manager
+    Version: 0.3
     Author: Varun Sridharan
     Author URI: http://varunsridharan.in/
     License: GPL2
@@ -26,7 +26,7 @@ defined('ABSPATH') or die("No script kiddies please!");
 
 
 class wc_attributes_menu_manager     {
-    private $db_key;
+    private static $db_key;
     private $attributes;
     
     
@@ -38,7 +38,7 @@ class wc_attributes_menu_manager     {
         $this->attributes = $this->get_settings();
         $this->save_settings();
         
-        register_activation_hook( __FILE__, array($this ,'_activate') );
+        register_activation_hook( __FILE__, array(__CLASS__ ,'_activate') );
         add_action('admin_menu', array($this,'admin_register_menu'));
         add_filter('woocommerce_attribute_show_in_nav_menus', array($this,'register_menu'), 99, 2);
         
@@ -63,10 +63,11 @@ class wc_attributes_menu_manager     {
     /**
      * Runs When the Plugin Is Activated
      * Filter Use register_activation_hook
-     * Since 0.1
+     * @Since 0.1
+     * @updated 0.3
      */
     public static function _activate(){
-        add_option($this->db_key,'','', ''); 
+        add_option(self::$db_key,'','', ''); 
     }
     
     /**
@@ -80,13 +81,19 @@ class wc_attributes_menu_manager     {
     
     /**
      * Saves Settings In DB
-     * Since 0.1
+     * @Since 0.1
+     * @updated 0.3
      */
     public function save_settings(){
         if(isset($_REQUEST['action'])){
 			if($_REQUEST['action'] == 'save_wc_attribute_menu'){
-                $attributes = array_keys($_POST['attributes']);
-                $attributes = serialize($attributes);
+				if(isset($_POST['attributes'])){
+					$attributes = array_keys($_POST['attributes']);
+					$attributes = serialize($attributes);	
+				} else {
+					$attributes = '';
+				}
+                
                 update_option($this->db_key,$attributes);
             }
         }
@@ -95,11 +102,16 @@ class wc_attributes_menu_manager     {
     
     /**
      * Retrives Settings From DB
-     * Since 0.1
+     * @since 0.1
+     * @updated 0.3
      */
     private function get_settings(){
         $attributes = get_option($this->db_key);
-        $attributes = unserialize($attributes);
+		if(!empty($attributes)){
+        	$attributes = unserialize($attributes);
+		}else {
+			$attributes = '';
+		}
         return $attributes;
     }
     
