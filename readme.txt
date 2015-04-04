@@ -3,12 +3,12 @@ Contributors: varunms
 Author URI: http://varunsridharan.in/
 Plugin URL: https://wordpress.org/plugins/woocommerce-attributes-menu-manager/
 Tags: Woocommerce,wc,menu,taxonomy,menu manager,attribute,attribute menu, wc attribute menu, affiliate, cart, checkout, commerce, configurable, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce
-Donate link: http://varunsridharan.in
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=75TP8MABWJNSG
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 0.3
-WC requires at least: 1.0
-WC tested up to: 2.3.5
+Tested up to: 4.1.1
+Stable tag: 0.4
+WC requires at least: 2.3.2
+WC tested up to: 2.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -16,6 +16,8 @@ Show Woocommerce Custom Attributes in Wordpress Menu Page
 
 == Description ==
 Attributes (which can be used for the layered nav) are a custom taxonomy, meaning you can display them in menus, or display products by attributes.
+
+[youtube https://www.youtube.com/watch?v=s7oELNNim0U]
 
 <h4> Create a template </h4>
 You will need to theme your attribute to make it display products how you want. To do this:
@@ -29,17 +31,18 @@ Thats all there is to it. You will now see this template when viewing taxonomy t
 `Products ==> Attributes Menu Manager`
  
 == Screenshots ==
-1. Plugin Menu
-2. Plugin Settings Page
-3. WP Menu Page
+1. Plugin Settings Menu
+2. Settings Page
+3. WooCommerce New Attribute Form [Dont Forget To Check Enable Archives] 
+4. WordPress Admin Menu Page
 
 == Installation ==
 = Minimum Requirements =
 
-* WordPress 3.8 or greater
+* WordPress version 3.8 or greater
 * PHP version 5.2.4 or greater
 * MySQL version 5.0 or greater
-
+* WooCommerce version 2.3.2 or greater
 = Automatic installation =
 
 Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of WooCommerce Attributes Menu Manager, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
@@ -62,6 +65,11 @@ The manual installation method involves downloading our plugin and uploading it 
 3. For Settings Look at your `Products ==> Attributes Menu Manager`
 
 == Frequently Asked Questions ==
+** Some Attribute Not Listing In WP Menu Page ? **
+1. Check attribute Visibility if using latest WooCommerce. if hidden please enable by Enable Archives? in edit page 
+
+2. Increase plugin priority If Some attribute is not showing in WP Admin Menu Page. also enable the attribute in screen option at WP Admin Menu Page
+
 **I have an idea for your plugin!**  
 That's great. We are always open to your input, and we would like to add anything we think will be useful to a lot of people. Please send your comment/idea to varunsridharan23@gmail.com
 
@@ -69,14 +77,24 @@ That's great. We are always open to your input, and we would like to add anythin
 Oops. Please User github / WordPress to post bugs.  <a href="https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager"> Open an Issue </a>
 
 == Changelog ==
-= 0.3 =
+= 0.4 - 04/04/2015 =
+* Fixed Activation Issue Bug <a href="https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager/issues/1"> [#1] </a> 
+* Fixed Show on screen not showing attributes <a href="https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager/issues/3"> [#3] </a> 
+* Added Plugin priority 
+* Minor Bug Fix
+* Added Paypal Donation Link
+* Added Github Link
+* Added Report Issue Link
+* Added Settings Link
+
+= 0.3 - 02/03/2015 =
 * Fixed Activation Issue Bug <a href="https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager/issues/1"> [#1] </a> 
 * Fixed Settings Saving / Getting Issue.
 
-= 0.2 =
+= 0.2 - 26/02/2015 =
 * Minor Fix
 * Added Screenshot 
 * Updated ReadMe
 
-= 0.1 =
+= 0.1 - 12/02/2015 =
 * Base Version
