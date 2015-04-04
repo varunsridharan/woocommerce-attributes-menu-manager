@@ -17,7 +17,7 @@
     Plugin Name: Woocommerce Attributes Menu
     Plugin URI: http://varunsridharan.in/
     Description: Woocommerce Attributes Menu
-    Version: 0.1
+    Version: 0.2
     Author: Varun Sridharan
     Author URI: http://varunsridharan.in/
     License: GPL2
@@ -40,7 +40,7 @@ class wc_attributes_menu_manager     {
         
         register_activation_hook( __FILE__, array($this ,'_activate') );
         add_action('admin_menu', array($this,'admin_register_menu'));
-        add_filter('woocommerce_attribute_show_in_nav_menus', array($this,'register_menu'), 1, 2);
+        add_filter('woocommerce_attribute_show_in_nav_menus', array($this,'register_menu'), 99, 2);
         
     }
     
@@ -49,6 +49,7 @@ class wc_attributes_menu_manager     {
      * @param   String $register  Refer WC
      * @param   String  [$name = ''] Name of the attribute
      * @returns boolean
+     * Since 0.1
      */
     public function register_menu( $register, $name = '' ) { 
         if(! empty($this->attributes)){
@@ -64,7 +65,7 @@ class wc_attributes_menu_manager     {
      * Filter Use register_activation_hook
      * Since 0.1
      */
-    public function _activate(){
+    public static function _activate(){
         add_option($this->db_key,'','', ''); 
     }
     
