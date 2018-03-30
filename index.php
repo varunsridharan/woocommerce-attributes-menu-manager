@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 Plugin Name: WooCommerce Attributes Menu Manager
 Plugin URI: http://varunsridharan.in/
 Description: WooCommerce Attributes Menu Manager
-Version: 0.6
+Version: 0.7
 Author: Varun Sridharan
 Text Domain: woocommerce-attributes-menu-manager
 Domain Path: /
@@ -148,6 +148,11 @@ class WC_Attributes_Menu_Manager {
 		}
 		$attributes = array_keys( $_POST['attributes'] );
 
+		if ( ! is_dir( $current_temp_dir . '/woocommerce/' ) ) {
+			self::$is_file_create_issue = true;
+			return false;
+		}
+
 		foreach ( $attributes as $attribute ) {
 			$file_name     = $current_temp_dir . '/woocommerce/taxonomy-' . $attribute . '.php';
 			$already_exist = $this->check_attribute_template_file( $attribute );
@@ -158,6 +163,7 @@ class WC_Attributes_Menu_Manager {
 				}
 			}
 		}
+		return true;
 	}
 
 	public function check_attribute_template_file( $attribute ) {
