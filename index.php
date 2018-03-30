@@ -17,20 +17,23 @@
     Plugin Name: WooCommerce Attributes Menu Manager
     Plugin URI: http://varunsridharan.in/
     Description: WooCommerce Attributes Menu Manager
-    Version: 0.4
+    Version: 0.6
     Author: Varun Sridharan
+	Text Domain: woocommerce-attributes-menu-manager
+	Domain Path: /
     Author URI: http://varunsridharan.in/
     License: GPL2
     GitHub Plugin URI: https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager/
 */
 defined('ABSPATH') or die("No script kiddies please!"); 
-
+define('WC_AMM_TXT','woocommerce-attributes-menu-manager');
 
 class wc_attributes_menu_manager     {
     private static $db_key;
     private static $wc_amm_priority;
     private static $default_priority;
     private $attributes;
+    private static $is_file_create_issue = false;
     
     
     /**
@@ -44,6 +47,8 @@ class wc_attributes_menu_manager     {
         $this->save_settings();
         
         register_activation_hook( __FILE__, array(__CLASS__ ,'_activate') );
+		add_action('plugins_loaded', array( $this, 'after_plugins_loaded' ));
+        add_filter('load_textdomain_mofile',  array( $this, 'load_plugin_mo_files' ), 10, 2);
         add_action('admin_menu', array($this,'admin_register_menu'));
         add_filter('woocommerce_attribute_show_in_nav_menus', array($this,'register_menu'), $this->get_priority(), 2);
         add_filter( 'plugin_row_meta', array( $this, 'plugin_row_links' ), 10, 2 );
@@ -75,6 +80,23 @@ class wc_attributes_menu_manager     {
         add_option(self::$db_key,'','', ''); 
         add_option(self::$wc_amm_priority,'99','', ''); 
     }
+	
+    /**
+     * Set Plugin Text Domain
+     */
+    public function after_plugins_loaded(){
+        load_plugin_textdomain(WC_AMM_TXT, false, __DIR__ );
+    }
+    
+    /**
+     * load translated mo file based on wp settings
+     */
+    public function load_plugin_mo_files($mofile, $domain) {
+        if (WC_AMM_TXT === $domain)
+            return __DIR__.'/'.get_locale().'.mo';
+
+        return $mofile;
+    }	
     
     /**
      * Register Plugin Menu
@@ -82,7 +104,9 @@ class wc_attributes_menu_manager     {
      * Since 0.1
      */
     public function admin_register_menu(){
-        add_submenu_page('edit.php?post_type=product', 'Attributes Menu Manager', 'Attributes Menu Manager', 'manage_woocommerce', 'wc-attribute-menu', array($this,'wc_attribute_menu' ));
+        add_submenu_page('edit.php?post_type=product', 
+						 __('Attributes Menu Manager',WC_AMM_TXT), 
+						 __('Attributes Menu Manager',WC_AMM_TXT), 'manage_woocommerce', 'wc-attribute-menu', array($this,'wc_attribute_menu' ));
     }
     
     /**
@@ -114,11 +138,41 @@ class wc_attributes_menu_manager     {
 					$wc_amm_save_priority = self::$default_priority;
 				}
                 
+                self::attribute_template_file();
+                
                 update_option(self::$wc_amm_priority,$wc_amm_save_priority);
                 update_option(self::$db_key,$attributes);
             }
         }
         
+    }
+    
+    
+    public function attribute_template_file(){
+        $current_temp_dir = get_template_directory();
+        if(empty($_POST['attributes'])){return false;}
+        $attributes = array_keys($_POST['attributes']);
+        
+        foreach($attributes as $attribute){
+            $file_name = $current_temp_dir.'/woocommerce/taxonomy-'.$attribute.'.php';
+            $already_exist = $this->check_attribute_template_file($attribute);
+            if(!$already_exist){
+                $pre_file = WP_PLUGIN_DIR.'/woocommerce/templates/taxonomy-product_cat.php'; 
+                if(!copy($pre_file, $file_name)){
+                    self::$is_file_create_issue = true;
+                }
+            }
+            
+        }
+         
+    }
+    
+    
+    public function check_attribute_template_file($attribute){
+         $current_temp_dir = get_template_directory();
+        $file_name = $current_temp_dir.'/woocommerce/taxonomy-'.$attribute.'.php';
+        $already_exist = file_exists($file_name);
+        return $already_exist;
     }
     
     /**
@@ -157,10 +211,16 @@ class wc_attributes_menu_manager     {
      * @since 0,1
      */
     private function show_messages(){
+        
          if(isset($_REQUEST['action'])){
 			if($_REQUEST['action'] == 'save_wc_attribute_menu'){
                 echo '<div class="updated settings-error" id="setting-error-settings_updated"> 
-        <p><strong>Settings saved.</strong></p></div>';
+        <p><strong>'.__('Settings saved.',WC_AMM_TXT).'</strong></p></div>';
+                
+                if(self::$is_file_create_issue) {
+                    echo '<div class="error settings-error" id="setting-error-settings_updated"> 
+        <p><strong>'.__('Unable To Create Template File. Kindly Create It Manual .',WC_AMM_TXT).'</strong></p></div>';
+                }
             }
          }
     }
@@ -176,7 +236,7 @@ class wc_attributes_menu_manager     {
 
         echo '<div class="wrap">
                 <form method="post">
-        <h2>WC Attributes Menu Manager </h2>';
+        <h2>'.__('WC Attributes Menu Manager',WC_AMM_TXT).'</h2>';
         $this->show_messages();
         echo '
         <script>
@@ -214,30 +274,40 @@ class wc_attributes_menu_manager     {
                 <table class="wp-list-table widefat fixed pages">
                     <thead>
                         <tr>
-                            <th class="manage-column column-title"><a href="#"><span>Name</span></a></th>
-                            <th class="manage-column column-title"><a href="#"><span>Slug</span></a></th>
-                            <th class="manage-column column-title"><a href="#"><span>Visibility</span></a></th>
-                            <th style="" class="manage-column column-author" id="author" scope="col">Menu Status</th>
+                            <th class="manage-column column-title"><a href="#"><span><?php _e('Name',WC_AMM_TXT); ?></span></a></th>
+                            <th class="manage-column column-title"><a href="#"><span><?php _e('Slug',WC_AMM_TXT); ?></span></a></th>
+                            <th class="manage-column "><?php _e('Template File',WC_AMM_TXT); ?></th>
+                            <th class="manage-column column-title"><a href="#"><span><?php _e('Visibility',WC_AMM_TXT); ?></span></a></th>
+                            <th class="manage-column column-author" id="author" scope="col"><?php _e('Menu Status',WC_AMM_TXT); ?></th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th class="manage-column column-title"><a href="#"><span>Name</span></a></th>
-                            <th class="manage-column column-title"><a href="#"><span>Slug</span></a></th>
-                            <th class="manage-column column-title"><a href="#"><span>Visibility</span></a></th>
-                            <th class="manage-column column-author">Menu Status</th>
+                            <th class="manage-column column-title"><a href="#"><span><?php _e('Name',WC_AMM_TXT); ?></span></a></th>
+                            <th class="manage-column column-title"><a href="#"><span><?php _e('Slug',WC_AMM_TXT); ?></span></a></th>
+                            <th class="manage-column "><?php _e('Template File',WC_AMM_TXT); ?></th>
+                            <th class="manage-column column-title"><a href="#"><span><?php _e('Visibility',WC_AMM_TXT); ?></span></a></th>
+                            <th class="manage-column column-author"><?php _e('Menu Status',WC_AMM_TXT); ?></th>
                         </tr>
                     </tfoot>
                     <tbody id="the-list"> 
                         <?php 
                         if(!empty($wc_attr_names)){
                             foreach($wc_attr_names as $names){
+                                
                                 $checked = '';
                                 $attr_slug = wc_attribute_taxonomy_name($names->attribute_label);
-                                $name = $names->attribute_label;
+                                $label = $names->attribute_label;
+                                $name = $names->attribute_name;
+                                $template_file = $this->check_attribute_template_file($attr_slug);
                                 $status = '';
+                                $template_file_status = '';
                                 if(!empty($saved_attrs)) {
                                     if(in_array($attr_slug,$saved_attrs)) {$checked = 'checked';};
+                                }
+                                
+                                if($template_file){
+                                    $template_file_status = '<span class="bounty-indicator-tab green">Exist</span>';
                                 }
 
                                 if($names->attribute_public == 1){
@@ -249,10 +319,12 @@ class wc_attributes_menu_manager     {
                                 }
                                 echo '<tr class="" id="post-170">
                                             <td class="post-title page-title column-title" ><strong><a class="row-title">
-                                                <label for="'.$attr_slug.'">'.$name.'</label></a></strong>
+                                                <label for="'.$attr_slug.'">'.$name.' [ '.$label.' ]</label></a></strong>
                                             </td>
                                             <td class="post-title page-title column-title" ><strong>
                                                 <label for="'.$attr_slug.'">'.$attr_slug.'</label></strong>
+                                            </td>
+                                             <td >'. $template_file_status.'
                                             </td>
                                             <td>'.$status.' </td>
                                             <td class="">
@@ -281,17 +353,16 @@ class wc_attributes_menu_manager     {
                  <br class="clear">
                 
                 <div class="postbox">
-                    <h3><span><?php _e( 'Create a template', '' ); ?></span></h3>
+                    <h3><span><?php _e( 'Create a template', WC_AMM_TXT ); ?></span></h3>
                     <div class="inside">
-                        <p>You will need to theme your attribute to make it display products how you want. To do this:</p>
+                        <p><?php _e( 'You will need to theme your attribute to make it display products how you want. To do this:', WC_AMM_TXT ); ?></p>
+                        
                         
                         <ul>    
-                            <li>* Copy <strong>woocommerce/templates/taxonomy-product_cat.php</strong> into your theme folder</li>
-                            <li>* Rename the template to reflect your attribute <code>taxonomy-{attribute_slug}.php</code> – in our example we’d use <strong>taxonomy-pa_size.php</strong></li>
+                            <li><?php _e( '* Copy <strong>woocommerce/templates/taxonomy-product_cat.php</strong> into your theme folder', WC_AMM_TXT ); ?></li>
+                            <li><?php _e( '* Rename the template to reflect your attribute <code>taxonomy-{attribute_slug}.php</code> – in our example we’d use <strong>taxonomy-pa_size.php</strong>', WC_AMM_TXT ); ?></li>
                         </ul>
-                        
-
-                        Thats all there is to it. You will now see this template when viewing taxonomy terms for your custom attribute.
+                        <?php _e('Thats all there is to it. You will now see this template when viewing taxonomy terms for your custom attribute.',WC_AMM_TXT); ?>
                     </div>
                 </div>
             </div>
@@ -302,31 +373,39 @@ class wc_attributes_menu_manager     {
         <div id="postbox-container-1" class="postbox-container">
             <div class="meta-box-sortables">
                 <div class="postbox">
-                    <h3><span><?php _e( 'Troubleshoot / F.A.Q', '' ); ?></span></h3>
+                    <h3><span><?php _e( 'Troubleshoot / F.A.Q', WC_AMM_TXT); ?></span></h3>
                     <div class="inside">
-                        <p> <strong> Some Attribute Not Listing In WP Menu Page ? </strong> <br/> <br/>
+                      
+                        <p> 
+                        <?php _e( '<strong> Some Attribute Not Listing In WP Menu Page ? </strong> <br/> <br/>
                             1. Check attribute Visibility if using latest WooCommerce. if hidden please enable by <strong>Enable Archives?</strong> in edit page
                             <br/><br/>
                             
                             2. Increase plugin priority If Some attribute is not showing in WP Admin Menu Page. also enable the attribute in screen option at WP Admin Menu Page</p>
-                        <strong>Plugin Priority : </strong>
+                        <strong>Plugin Priority : </strong>', WC_AMM_TXT); ?>
                         <input type="text" value="<?php echo $this->get_priority(); ?> "  name="wc_amm_priority" id="wc_amm_priority" class="small-text" />
                     </div>
                 </div>
                 <div class="postbox">
-                    <h3><span><?php _e( 'About WC Attributes Menu Manager <small> V0.4 </small>', 'wp_admin_style' ); ?></span></h3>
+                    <h3><span><?php _e( 'About WC Attributes Menu Manager <small> V0.6 </small>', WC_AMM_TXT); ?></span></h3>
                     <div class="inside">
-                        <p>Show Woocommerce Custom Attributes in WordPress Menu Page. Attributes (which can be used for the layered nav) are a custom taxonomy, meaning you can display them in menus, or display products by attributes.</p>
+                       
+                         
+                        <p><?php _e( 'Show Woocommerce Custom Attributes in WordPress Menu Page. Attributes (which can be used for the layered nav) are a custom taxonomy, meaning you can display them in menus, or display products by attributes.', WC_AMM_TXT); ?></p>
                         
                         <ul>
-                            <li><a href="https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager">View On Github</a></li>
-                            <li><a href="https://wordpress.org/support/plugin/woocommerce-attributes-menu-manager">WordPress Support</a></li>
-                            <li><a href="https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager/issues">Report Issue</a></li>
-                            <li><a href="https://wordpress.org/support/view/plugin-reviews/woocommerce-attributes-menu-manager">Write A Review</a></li>
-                            <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=75TP8MABWJNSG">♥ Donate</a></li>
+
+
+
+
+
+                            <li><a href="https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager"><?php _e( 'View On Github', WC_AMM_TXT); ?></a></li>
+                            <li><a href="https://wordpress.org/support/plugin/woocommerce-attributes-menu-manager"><?php _e( 'WordPress Support', WC_AMM_TXT); ?></a></li>
+                            <li><a href="https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager/issues"><?php _e( 'Report Issue', WC_AMM_TXT); ?></a></li>
+                            <li><a href="https://wordpress.org/support/view/plugin-reviews/woocommerce-attributes-menu-manager"><?php _e( 'Write A Review', WC_AMM_TXT); ?></a></li>
+                            <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=75TP8MABWJNSG"><?php _e( '♥ Donate', WC_AMM_TXT); ?></a></li>
                             
                         </ul>
-                        <p>&copy; Copyright 2014 - <?php echo date( 'Y' ); ?> <a href="http://varunsridharan.in/">Varun Sridharan</a></p>
                     </div>
                 </div>
                 
@@ -357,29 +436,29 @@ class wc_attributes_menu_manager     {
             $plugin_meta[ ] = sprintf(
                 ' <a href="%s">%s</a>',
                 admin_url('edit.php?post_type=product&page=wc-attribute-menu'),
-                'Settings'
+                __('Settings',WC_AMM_TXT)
             );
             
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
 				'https://wordpress.org/plugins/woocommerce-attributes-menu-manager/faq/',
-				'F.A.Q'
+				__('F.A.Q',WC_AMM_TXT)
 			);
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
 				'https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager',
-				'View On Github'
+				__('View On Github',WC_AMM_TXT)
 			);
             
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
 				'https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager/issues/new',
-				'Report Issue'
+				__('Report Issue',WC_AMM_TXT)
 			);
             $plugin_meta[ ] = sprintf(
 				'&hearts; <a href="%s">%s</a>',
 				'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=75TP8MABWJNSG',
-				'Donate'
+				__('Donate',WC_AMM_TXT)
 			);
 		}
 		return $plugin_meta;
@@ -398,6 +477,12 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 }
 
 function wc_attributes_menu_manager_plugin_notice() {
-	echo '<div class="error"><p><strong> <i> Woocommerce Attributes Menu Manager </i> </strong> Requires <a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'"> <strong> <u>Woocommerce</u></strong>  </a> To Be Installed And Activated </p></div>';
+	echo '<div class="error"><p>';
+	_e('<strong> <i> Woocommerce Attributes Menu Manager </i> </strong>',WC_AMM_TXT);
+	echo '<a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'">';
+	_e('Requires  <strong> <u>Woocommerce</u></strong>',WC_AMM_TXT);
+	echo '</a>';
+	_e('To Be Installed And Activated',WC_AMM_TXT);
+	echo '</p></div>';
 } 
 ?>

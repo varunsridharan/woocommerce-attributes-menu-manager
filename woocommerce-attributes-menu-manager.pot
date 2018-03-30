@@ -1,0 +1,171 @@
+# Copyright (C) 2016 WooCommerce Attributes Menu Manager
+# This file is distributed under the same license as the WooCommerce Attributes Menu Manager package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Attributes Menu Manager 0.6\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
+"attributes-menu-manager\n"
+"POT-Creation-Date: 2016-01-19 02:46:36+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: index.php:88 index.php:89
+msgid "Attributes Menu Manager"
+msgstr ""
+
+#: index.php:198
+msgid "Settings saved."
+msgstr ""
+
+#: index.php:202
+msgid "Unable To Create Template File. Kindly Create It Manual ."
+msgstr ""
+
+#: index.php:219
+msgid "WC Attributes Menu Manager"
+msgstr ""
+
+#: index.php:257 index.php:266
+msgid "Name"
+msgstr ""
+
+#: index.php:258 index.php:267
+msgid "Slug"
+msgstr ""
+
+#: index.php:259 index.php:268
+msgid "Template File"
+msgstr ""
+
+#: index.php:260 index.php:269
+msgid "Visibility"
+msgstr ""
+
+#: index.php:261 index.php:270
+msgid "Menu Status"
+msgstr ""
+
+#: index.php:336
+msgid "Create a template"
+msgstr ""
+
+#: index.php:338
+msgid ""
+"You will need to theme your attribute to make it display products how you "
+"want. To do this:"
+msgstr ""
+
+#: index.php:342
+msgid ""
+"* Copy <strong>woocommerce/templates/taxonomy-product_cat.php</strong> into "
+"your theme folder"
+msgstr ""
+
+#: index.php:343
+msgid ""
+"* Rename the template to reflect your attribute <code>taxonomy-"
+"{attribute_slug}.php</code> – in our example we’d use <strong>taxonomy-"
+"pa_size.php</strong>"
+msgstr ""
+
+#: index.php:345
+msgid ""
+"Thats all there is to it. You will now see this template when viewing "
+"taxonomy terms for your custom attribute."
+msgstr ""
+
+#: index.php:356
+msgid "Troubleshoot / F.A.Q"
+msgstr ""
+
+#: index.php:360
+msgid ""
+"<strong> Some Attribute Not Listing In WP Menu Page ? </strong> <br/> <br/>"
+"\r\n"
+"                            1. Check attribute Visibility if using latest "
+"WooCommerce. if hidden please enable by <strong>Enable Archives?</strong> in "
+"edit page\r\n"
+"                            <br/><br/>\r\n"
+"                            \r\n"
+"                            2. Increase plugin priority If Some attribute is "
+"not showing in WP Admin Menu Page. also enable the attribute in screen "
+"option at WP Admin Menu Page</p>\r\n"
+"                        <strong>Plugin Priority : </strong>"
+msgstr ""
+
+#: index.php:370
+msgid "About WC Attributes Menu Manager <small> V0.6 </small>"
+msgstr ""
+
+#: index.php:374
+msgid ""
+"Show Woocommerce Custom Attributes in WordPress Menu Page. Attributes (which "
+"can be used for the layered nav) are a custom taxonomy, meaning you can "
+"display them in menus, or display products by attributes."
+msgstr ""
+
+#: index.php:382 index.php:430
+msgid "View On Github"
+msgstr ""
+
+#: index.php:383
+msgid "WordPress Support"
+msgstr ""
+
+#: index.php:384 index.php:436
+msgid "Report Issue"
+msgstr ""
+
+#: index.php:385
+msgid "Write A Review"
+msgstr ""
+
+#: index.php:386
+msgid "♥ Donate"
+msgstr ""
+
+#: index.php:419
+msgid "Settings"
+msgstr ""
+
+#: index.php:425
+msgid "F.A.Q"
+msgstr ""
+
+#: index.php:441
+msgid "Donate"
+msgstr ""
+
+#: index.php:461
+msgid "<strong> <i> Woocommerce Attributes Menu Manager </i> </strong>"
+msgstr ""
+
+#: index.php:463
+msgid "Requires  <strong> <u>Woocommerce</u></strong>"
+msgstr ""
+
+#: index.php:465
+msgid "To Be Installed And Activated"
+msgstr ""
+
+#. #-#-#-#-#  plugin.pot (WooCommerce Attributes Menu Manager 0.6)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#. #-#-#-#-#  plugin.pot (WooCommerce Attributes Menu Manager 0.6)  #-#-#-#-#
+#. Description of the plugin/theme
+msgid "WooCommerce Attributes Menu Manager"
+msgstr ""
+
+#. #-#-#-#-#  plugin.pot (WooCommerce Attributes Menu Manager 0.6)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  plugin.pot (WooCommerce Attributes Menu Manager 0.6)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "http://varunsridharan.in/"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Varun Sridharan"
+msgstr ""
