@@ -3,12 +3,12 @@ Contributors: varunms
 Author URI: http://varunsridharan.in/
 Plugin URL: https://wordpress.org/plugins/woocommerce-attributes-menu-manager/
 Tags: Woocommerce,wc,menu,taxonomy,menu manager,attribute,attribute menu, wc attribute menu, affiliate, cart, checkout, commerce, configurable, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,menu,attribute menu manager,attr menu,wc attr menu, wc attribute menu manager
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=75TP8MABWJNSG
+Donate link: https://www.paypal.me/varunsridharan23
 Requires at least: 3.0
-Tested up to: 4.5
-Stable tag: 0.6
+Tested up to: 5.0
+Stable tag: 0.7
 WC requires at least: 2.3.2
-WC tested up to: 2.5
+WC tested up to: 3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -77,6 +77,10 @@ That's great. We are always open to your input, and we would like to add anythin
 Oops. Please User github / WordPress to post bugs.  <a href="https://github.com/technofreaky/WooCommerce-Attributes-Menu-Manager"> Open an Issue </a>
 
 == Changelog ==
+= 0.7 - 30/03/2018 =
+* Tested : With Latest WP & WC
+* Minor Code Cleanup & Added Docblock.
+
 = 0.6 - 19/01/2016 =
 * Minor BUg Fix
 * Tested With Latest Version of WP & WC
