@@ -1,8 +1,8 @@
-# Copyright (C) 2016 WooCommerce Attributes Menu Manager
-# This file is distributed under the same license as the WooCommerce Attributes Menu Manager package.
+# Copyright (C) 2016 Attributes Menu Manager For WooCommerce
+# This file is distributed under the same license as the Attributes Menu Manager For WooCommerce package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Attributes Menu Manager 0.6\n"
+"Project-Id-Version: Attributes Menu Manager For WooCommerce 0.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "attributes-menu-manager\n"
 "POT-Creation-Date: 2016-01-19 02:46:36+00:00\n"
@@ -141,7 +141,7 @@ msgid "Donate"
 msgstr ""
 
 #: index.php:461
-msgid "<strong> <i> Woocommerce Attributes Menu Manager </i> </strong>"
+msgid "<strong> <i> Attributes Menu Manager For WooCommerce </i> </strong>"
 msgstr ""
 
 #: index.php:463
@@ -152,16 +152,16 @@ msgstr ""
 msgid "To Be Installed And Activated"
 msgstr ""
 
-#. #-#-#-#-#  plugin.pot (WooCommerce Attributes Menu Manager 0.6)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Attributes Menu Manager For WooCommerce 0.6)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#. #-#-#-#-#  plugin.pot (WooCommerce Attributes Menu Manager 0.6)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Attributes Menu Manager For WooCommerce 0.6)  #-#-#-#-#
 #. Description of the plugin/theme
-msgid "WooCommerce Attributes Menu Manager"
+msgid "Attributes Menu Manager For WooCommerce"
 msgstr ""
 
-#. #-#-#-#-#  plugin.pot (WooCommerce Attributes Menu Manager 0.6)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Attributes Menu Manager For WooCommerce 0.6)  #-#-#-#-#
 #. Plugin URI of the plugin/theme
-#. #-#-#-#-#  plugin.pot (WooCommerce Attributes Menu Manager 0.6)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Attributes Menu Manager For WooCommerce 0.6)  #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "http://varunsridharan.in/"
 msgstr ""

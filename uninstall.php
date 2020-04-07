@@ -2,7 +2,7 @@
 /**
 * Fired when the plugin is uninstalled.
 *
-* @package WooCommerce Attributes Menu Manager
+* @package Attributes Menu Manager For WooCommerce
 * @author Varun Sridharan <varunsridharan23@gmail.com>
 * @license GPL - 2.0+
 * @link https://wordpress.org/plugins/woocommerce-attributes-menu-manager/

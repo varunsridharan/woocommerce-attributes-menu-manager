@@ -14,10 +14,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  
-Plugin Name: WooCommerce Attributes Menu Manager
+Plugin Name: Attributes Menu Manager For WooCommerce
 Plugin URI: http://varunsridharan.in/
-Description: WooCommerce Attributes Menu Manager
-Version: 0.7
+Description: Attributes Menu Manager For WooCommerce
+Version: 0.8
 Author: Varun Sridharan
 Text Domain: woocommerce-attributes-menu-manager
 Domain Path: /
@@ -332,7 +332,7 @@ class WC_Attributes_Menu_Manager {
 								foreach ( $wc_attr_names as $names ) {
 
 									$checked              = '';
-									$attr_slug            = wc_attribute_taxonomy_name( $names->attribute_label );
+									$attr_slug            = wc_attribute_taxonomy_name( $names->attribute_name );
 									$label                = $names->attribute_label;
 									$name                 = $names->attribute_name;
 									$template_file        = $this->check_attribute_template_file( $attr_slug );
@@ -528,7 +528,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 function wc_attributes_menu_manager_plugin_notice() {
 	echo '<div class="error"><p>';
-	_e( '<strong> <i> Woocommerce Attributes Menu Manager </i> </strong>', WC_AMM_TXT );
+	_e( '<strong> <i> Attributes Menu Manager For WooCommerce </i> </strong>', WC_AMM_TXT );
 	echo '<a href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce' ) . '">';
 	_e( 'Requires  <strong> <u>Woocommerce</u></strong>', WC_AMM_TXT );
 	echo '</a>';
