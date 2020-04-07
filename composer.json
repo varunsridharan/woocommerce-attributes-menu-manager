@@ -34,8 +34,8 @@
   },
   "scripts"     : {
 	"makepot"        : "makepot ./wp-pot.json",
-	"add-textdomain" : "add-textdomain -i \"wc-product-subtitle\" ./",
-	"wp2githubmd"    : "wp2gitthub-md \"wc-product-subtitle\" \"./readme.txt\" ",
+	"add-textdomain" : "add-textdomain -i \"wc-attrmm\" ./",
+	"wp2githubmd"    : "wp2gitthub-md \"wc-attrmm\" \"./readme.txt\" ",
 	"build"          : [ "@add-textdomain", "@makepot", "@wp2githubmd" ]
   },
   "authors"     : [

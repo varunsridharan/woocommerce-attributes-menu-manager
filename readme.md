@@ -32,16 +32,16 @@ Thats all there is to it. You will now see this template when viewing taxonomy t
 
 ## Screenshots 
 ### 1. Plugin Settings Menu
-![Plugin Settings Menu](https://ps.w.org/wc-product-subtitle/assets/screenshot-1.gif)
+[missing image]
 
 ### 2. Settings Page
-![Settings Page](https://ps.w.org/wc-product-subtitle/assets/screenshot-2.jpg)
+[missing image]
 
 ### 3. WooCommerce New Attribute Form [Dont Forget To Check Enable Archives] 
-![WooCommerce New Attribute Form [Dont Forget To Check Enable Archives] ](https://ps.w.org/wc-product-subtitle/assets/screenshot-3.gif)
+[missing image]
 
 ### 4. WordPress Admin Menu Page
-![WordPress Admin Menu Page](https://ps.w.org/wc-product-subtitle/assets/screenshot-4.jpg)
+[missing image]
 
 
 

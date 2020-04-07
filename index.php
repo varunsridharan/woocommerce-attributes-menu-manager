@@ -14,7 +14,6 @@
  * WC tested up to: 4.6
  */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-define( 'WC_AMM_TXT', 'wc-attributes-menu-manager' );
 
 /**
  * Class WC_Attributes_Menu_Manager
@@ -221,7 +220,7 @@ class WC_Attributes_Menu_Manager {
 	 * Since 0.1
 	 */
 	public function admin_register_menu() {
-		$name = __( 'Attributes Menu Manager', 'wc-product-subtitle' );
+		$name = __( 'Attributes Menu Manager', 'wc-attrmm' );
 		add_submenu_page( 'edit.php?post_type=product', $name, $name, 'manage_woocommerce', 'wc-attribute-menu', array(
 			$this,
 			'wc_attribute_menu',
@@ -247,11 +246,11 @@ class WC_Attributes_Menu_Manager {
 	private function show_messages() {
 		if ( isset( $_REQUEST['action'] ) && 'save_wc_attribute_menu' === $_REQUEST['action'] ) {
 			echo '<div class="updated settings-error" id="setting-error-settings_updated"> 
-        <p><strong>' . __( 'Settings saved.', 'wc-product-subtitle' ) . '</strong></p></div>';
+        <p><strong>' . __( 'Settings saved.', 'wc-attrmm' ) . '</strong></p></div>';
 
 			if ( self::$is_file_create_issue ) {
 				echo '<div class="error settings-error" id="setting-error-settings_updated"> 
-        <p><strong>' . __( 'Unable To Create Template File. Kindly Create It Manual .', 'wc-product-subtitle' ) . '</strong></p></div>';
+        <p><strong>' . __( 'Unable To Create Template File. Kindly Create It Manual .', 'wc-attrmm' ) . '</strong></p></div>';
 			}
 		}
 	}
@@ -267,11 +266,11 @@ class WC_Attributes_Menu_Manager {
 	 */
 	public function plugin_row_links( $plugin_meta, $plugin_file ) {
 		if ( $plugin_file === plugin_basename( __FILE__ ) ) {
-			$plugin_meta[] = sprintf( ' <a href="%s">%s</a>', admin_url( 'edit.php?post_type=product&page=wc-attribute-menu' ), __( 'Settings', 'wc-product-subtitle' ) );
-			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', 'https://wordpress.org/plugins/woocommerce-attributes-menu-manager/faq/', __( 'F.A.Q', 'wc-product-subtitle' ) );
-			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', 'https://github.com/varunsridharan/wc-attributes-menu-manager', __( 'View On Github', 'wc-product-subtitle' ) );
-			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', 'https://github.com/varunsridharan/wc-attributes-menu-manager/issues/new', __( 'Report Issue', 'wc-product-subtitle' ) );
-			$plugin_meta[] = sprintf( '&hearts; <a href="%s">%s</a>', 'http://paypal.me/varunsridharan23', __( 'Donate', 'wc-product-subtitle' ) );
+			$plugin_meta[] = sprintf( ' <a href="%s">%s</a>', admin_url( 'edit.php?post_type=product&page=wc-attribute-menu' ), __( 'Settings', 'wc-attrmm' ) );
+			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', 'https://wordpress.org/plugins/woocommerce-attributes-menu-manager/faq/', __( 'F.A.Q', 'wc-attrmm' ) );
+			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', 'https://github.com/varunsridharan/wc-attributes-menu-manager', __( 'View On Github', 'wc-attrmm' ) );
+			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', 'https://github.com/varunsridharan/wc-attributes-menu-manager/issues/new', __( 'Report Issue', 'wc-attrmm' ) );
+			$plugin_meta[] = sprintf( '&hearts; <a href="%s">%s</a>', 'http://paypal.me/varunsridharan23', __( 'Donate', 'wc-attrmm' ) );
 		}
 		return $plugin_meta;
 	}
@@ -289,10 +288,10 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 function wc_attributes_menu_manager_plugin_notice() {
 	echo '<div class="error"><p>';
-	_e( '<strong> <i> Attributes Menu Manager For WooCommerce </i> </strong>', WC_AMM_TXT, 'wc-product-subtitle' );
+	_e( '<strong> <i> Attributes Menu Manager For WooCommerce </i> </strong>', 'wc-attrmm' );
 	echo '<a href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce' ) . '">';
-	_e( 'Requires  <strong> <u>Woocommerce</u></strong>', WC_AMM_TXT, 'wc-product-subtitle' );
+	_e( 'Requires  <strong> <u>Woocommerce</u></strong>', 'wc-attrmm' );
 	echo '</a>';
-	_e( 'To Be Installed And Activated', WC_AMM_TXT, 'wc-product-subtitle' );
+	_e( 'To Be Installed And Activated', 'wc-attrmm' );
 	echo '</p></div>';
 }

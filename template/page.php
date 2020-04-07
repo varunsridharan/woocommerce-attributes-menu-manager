@@ -105,7 +105,7 @@
 
 <div class="wrap">
 	<form method="post">
-		<h2><?php _e( 'WC Attributes Menu Manager', 'wc-product-subtitle' ); ?></h2>
+		<h2><?php _e( 'WC Attributes Menu Manager', 'wc-attrmm' ); ?></h2>
 		<?php $this->show_messages(); ?>
 		<div id="poststuff">
 			<div id="post-body" class="metabox-holder columns-2">
@@ -114,20 +114,20 @@
 						<table class="wp-list-table widefat fixed pages">
 							<thead>
 							<tr>
-								<th class="manage-column"><?php _e( 'Name', 'wc-product-subtitle' ); ?></th>
-								<th class="manage-column"><?php _e( 'Slug', 'wc-product-subtitle' ); ?></th>
-								<th class="manage-column "><?php _e( 'Template File', 'wc-product-subtitle' ); ?></th>
-								<th class="manage-column"><?php _e( 'Visibility', 'wc-product-subtitle' ); ?></th>
-								<th class="manage-column"><?php _e( 'Menu Status', 'wc-product-subtitle' ); ?></th>
+								<th class="manage-column"><?php _e( 'Name', 'wc-attrmm' ); ?></th>
+								<th class="manage-column"><?php _e( 'Slug', 'wc-attrmm' ); ?></th>
+								<th class="manage-column "><?php _e( 'Template File', 'wc-attrmm' ); ?></th>
+								<th class="manage-column"><?php _e( 'Visibility', 'wc-attrmm' ); ?></th>
+								<th class="manage-column"><?php _e( 'Menu Status', 'wc-attrmm' ); ?></th>
 							</tr>
 							</thead>
 							<tfoot>
 							<tr>
-								<th class="manage-column"><?php _e( 'Name', 'wc-product-subtitle' ); ?></th>
-								<th class="manage-column"><?php _e( 'Slug', 'wc-product-subtitle' ); ?></th>
-								<th class="manage-column "><?php _e( 'Template File', 'wc-product-subtitle' ); ?></th>
-								<th class="manage-column"><?php _e( 'Visibility', 'wc-product-subtitle' ); ?></th>
-								<th class="manage-column"><?php _e( 'Menu Status', 'wc-product-subtitle' ); ?></th>
+								<th class="manage-column"><?php _e( 'Name', 'wc-attrmm' ); ?></th>
+								<th class="manage-column"><?php _e( 'Slug', 'wc-attrmm' ); ?></th>
+								<th class="manage-column "><?php _e( 'Template File', 'wc-attrmm' ); ?></th>
+								<th class="manage-column"><?php _e( 'Visibility', 'wc-attrmm' ); ?></th>
+								<th class="manage-column"><?php _e( 'Menu Status', 'wc-attrmm' ); ?></th>
 							</tr>
 							</tfoot>
 
@@ -138,12 +138,12 @@
 									$attr_slug            = wc_attribute_taxonomy_name( $names->attribute_name );
 									$name                 = $names->attribute_name;
 									$template_file        = $this->check_attribute_template_file( $attr_slug );
-									$status               = '<span class="bounty-indicator-tab green">' . __( 'Visible', 'wc-product-subtitle' ) . '</span>';
+									$status               = '<span class="bounty-indicator-tab green">' . __( 'Visible', 'wc-attrmm' ) . '</span>';
 									$checked              = ( ! empty( $saved_attrs ) && in_array( $attr_slug, $saved_attrs, true ) ) ? 'checked' : '';
 									$template_file_status = ( $template_file ) ? '<span class="bounty-indicator-tab green">Exist</span>' : '';
 
 									if ( 0 === $names->attribute_public ) {
-										$status = '<span class="bounty-indicator-tab red">' . __( 'Hidden', 'wc-product-subtitle' ) . '</span>';
+										$status = '<span class="bounty-indicator-tab red">' . __( 'Hidden', 'wc-attrmm' ) . '</span>';
 									}
 
 									echo <<<HTML
@@ -162,8 +162,8 @@
 HTML;
 								}
 							} else {
-								$no  = __( 'No Attributes Created..', 'wc-product-subtitle' );
-								$c1  = __( 'Please Create One', 'wc-product-subtitle' );
+								$no  = __( 'No Attributes Created..', 'wc-attrmm' );
+								$c1  = __( 'Please Create One', 'wc-attrmm' );
 								$url = admin_url( 'edit.php?post_type=product&page=product_attributes' );
 								echo <<<HTML
 <tr> <td colspan="3"> $no <a href="$url"> $c1 </a> </td> </tr>
@@ -178,20 +178,20 @@ HTML;
 							<span class="spinner"
 								  style="display: inline-block; float:none; vertical-align:middle; margin-right:10px;"></span>
 							<input type="submit" name="submit" id="submit" class="button button-primary"
-								   value="<?php _e( 'Save Changes', 'wc-product-subtitle' ); ?>">
+								   value="<?php _e( 'Save Changes', 'wc-attrmm' ); ?>">
 						</p>
 						<br class="clear">
 
 						<div class="postbox">
-							<h3><span><?php _e( 'Create a template', 'wc-product-subtitle' ); ?></span></h3>
+							<h3><span><?php _e( 'Create a template', 'wc-attrmm' ); ?></span></h3>
 							<div class="inside">
-								<p><?php _e( 'You will need to theme your attribute to make it display products how you want. To do this:', 'wc-product-subtitle' ); ?></p>
+								<p><?php _e( 'You will need to theme your attribute to make it display products how you want. To do this:', 'wc-attrmm' ); ?></p>
 
 								<ul>
-									<li><?php _e( '* Copy <strong>woocommerce/templates/taxonomy-product_cat.php</strong> into your theme folder', 'wc-product-subtitle' ); ?></li>
-									<li><?php _e( '* Rename the template to reflect your attribute <code>taxonomy-{attribute_slug}.php</code> – in our example we’d use <strong>taxonomy-pa_size.php</strong>', 'wc-product-subtitle' ); ?></li>
+									<li><?php _e( '* Copy <strong>woocommerce/templates/taxonomy-product_cat.php</strong> into your theme folder', 'wc-attrmm' ); ?></li>
+									<li><?php _e( '* Rename the template to reflect your attribute <code>taxonomy-{attribute_slug}.php</code> – in our example we’d use <strong>taxonomy-pa_size.php</strong>', 'wc-attrmm' ); ?></li>
 								</ul>
-								<?php _e( 'Thats all there is to it. You will now see this template when viewing taxonomy terms for your custom attribute.', 'wc-product-subtitle' ); ?>
+								<?php _e( 'Thats all there is to it. You will now see this template when viewing taxonomy terms for your custom attribute.', 'wc-attrmm' ); ?>
 							</div>
 						</div>
 
@@ -201,7 +201,7 @@ HTML;
 				<div id="postbox-container-1" class="postbox-container">
 					<div class="meta-box-sortables">
 						<div class="postbox">
-							<h3><span><?php _e( 'Troubleshoot / F.A.Q', WC_AMM_TXT, 'wc-product-subtitle' ); ?></span></h3>
+							<h3><span><?php _e( 'Troubleshoot / F.A.Q', WC_AMM_TXT, 'wc-attrmm' ); ?></span></h3>
 							<div class="inside">
 								<p>
 									<?php
@@ -211,7 +211,7 @@ HTML;
                             <br/><br/>
                             2. Increase plugin priority If Some attribute is not showing in WP Admin Menu Page. also enable the attribute in screen option at WP Admin Menu Page
                             <br/><br/>
-                        <strong>Plugin Priority : </strong>', 'wc-product-subtitle' );
+                        <strong>Plugin Priority : </strong>', 'wc-attrmm' );
 									?>
 									<input type="text" value="<?php echo $this->get_priority(); ?>"
 										   name="wc_amm_priority" id="wc_amm_priority" class="small-text"/>
@@ -220,24 +220,26 @@ HTML;
 						</div>
 						<div class="postbox">
 							<h3>
-								<span><?php _e( 'About WC Attributes Menu Manager <small> V1.0 </small>', 'wc-product-subtitle' ); ?></span>
+								<span><?php _e( 'About WC Attributes Menu Manager <small> V1.0 </small>', 'wc-attrmm' ); ?></span>
 							</h3>
 							<div class="inside">
-								<p><?php _e( 'Show Woocommerce Custom Attributes in WordPress Menu Page. Attributes (which can be used for the layered nav) are a custom taxonomy, meaning you can display them in menus, or display products by attributes.', 'wc-product-subtitle' ); ?></p>
+								<p><?php _e( 'Show Woocommerce Custom Attributes in WordPress Menu Page. Attributes (which can be used for the layered nav) are a custom taxonomy, meaning you can display them in menus, or display products by attributes.', 'wc-attrmm' ); ?></p>
 								<ul>
 									<li>
-										<a href="https://github.com/varunsridharan/wc-attributes-menu-manager"><?php _e( 'View On Github', 'wc-product-subtitle' ); ?></a>
+										<a href="https://github.com/varunsridharan/wc-attributes-menu-manager"><?php _e( 'View On Github', 'wc-attrmm' ); ?></a>
 									</li>
 									<li>
-										<a href="https://wordpress.org/support/plugin/woocommerce-attributes-menu-manager"><?php _e( 'WordPress Support', 'wc-product-subtitle' ); ?></a>
+										<a href="https://wordpress.org/support/plugin/woocommerce-attributes-menu-manager"><?php _e( 'WordPress Support', 'wc-attrmm' ); ?></a>
 									</li>
 									<li>
-										<a href="https://github.com/varunsridharan/wc-attributes-menu-manager/issues"><?php _e( 'Report Issue', 'wc-product-subtitle' ); ?></a>
+										<a href="https://github.com/varunsridharan/wc-attributes-menu-manager/issues"><?php _e( 'Report Issue', 'wc-attrmm' ); ?></a>
 									</li>
 									<li>
-										<a href="https://wordpress.org/support/view/plugin-reviews/woocommerce-attributes-menu-manager"><?php _e( 'Write A Review', 'wc-product-subtitle' ); ?></a>
+										<a href="https://wordpress.org/support/view/plugin-reviews/woocommerce-attributes-menu-manager"><?php _e( 'Write A Review', 'wc-attrmm' ); ?></a>
 									</li>
-									<li><a href="http://paypal.me/varunsridharan23"><?php _e( '♥ Donate', 'wc-product-subtitle' ); ?></a></li>
+									<li>
+										<a href="http://paypal.me/varunsridharan23"><?php _e( '♥ Donate', 'wc-attrmm' ); ?></a>
+									</li>
 								</ul>
 							</div>
 						</div>
