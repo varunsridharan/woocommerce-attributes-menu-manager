@@ -1,0 +1,6 @@
+{
+  "src"     : "./",
+  "dist"    : "./i18n/wc-attrmm.pot",
+  "domain"  : "wc-attrmm",
+  "exclude" : "assets/,src/,node_modules/,vendor/"
+}
