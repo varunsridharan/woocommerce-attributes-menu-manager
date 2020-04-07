@@ -67,14 +67,12 @@ class WC_Attributes_Menu_Manager {
 		$this->save_settings();
 
 		/**
-		 * @uses after_plugins_loaded
 		 * @uses admin_register_menu
 		 * @uses init_menu
 		 * @uses plugin_row_links
 		 * @uses _activate
 		 */
 		register_activation_hook( __FILE__, array( __CLASS__, '_activate' ) );
-		add_action( 'plugins_loaded', array( $this, 'after_plugins_loaded' ) );
 		add_action( 'admin_menu', array( $this, 'admin_register_menu' ) );
 		add_filter( 'woocommerce_attribute_show_in_nav_menus', array( $this, 'init_menu' ), $this->get_priority(), 2 );
 		add_filter( 'plugin_row_meta', array( $this, 'plugin_row_links' ), 10, 2 );
@@ -205,13 +203,6 @@ class WC_Attributes_Menu_Manager {
 	 */
 	public function init_menu( $register, $name = '' ) {
 		return ( ! empty( $this->attributes ) && in_array( $name, $this->attributes, true ) ) ? true : $register;
-	}
-
-	/**
-	 * Set Plugin Text Domain
-	 */
-	public function after_plugins_loaded() {
-		load_plugin_textdomain( WC_AMM_TXT, false, __DIR__ );
 	}
 
 	/**

@@ -201,7 +201,7 @@ HTML;
 				<div id="postbox-container-1" class="postbox-container">
 					<div class="meta-box-sortables">
 						<div class="postbox">
-							<h3><span><?php _e( 'Troubleshoot / F.A.Q', WC_AMM_TXT, 'wc-attrmm' ); ?></span></h3>
+							<h3><span><?php _e( 'Troubleshoot / F.A.Q', 'wc-attrmm' ); ?></span></h3>
 							<div class="inside">
 								<p>
 									<?php
