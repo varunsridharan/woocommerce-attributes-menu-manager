@@ -1,7 +1,5 @@
 === Attributes Menu Manager For WooCommerce ===
 Contributors: varunms
-Author URI: http://varunsridharan.in/
-Plugin URL: https://wordpress.org/plugins/woocommerce-attributes-menu-manager/
 Tags: Woocommerce,wc,menu,taxonomy,menu manager,attribute,attribute menu, wc attribute menu, affiliate, cart, checkout, commerce, configurable, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,menu,attribute menu manager,attr menu,wc attr menu, wc attribute menu manager
 Donate link: https://www.paypal.me/varunsridharan23
 Requires at least: 3.0

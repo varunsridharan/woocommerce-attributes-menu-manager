@@ -1,7 +1,5 @@
 # Attributes Menu Manager For WooCommerce 
 **Contributors:** [varunms](https://profile.wordpress.org/varunms)  
-Author URI: http://varunsridharan.in/
-Plugin URL: https://wordpress.org/plugins/woocommerce-attributes-menu-manager/
 **Tags:** Woocommerce,wc,menu,taxonomy,menu manager,attribute,attribute menu, wc attribute menu, affiliate, cart, checkout, commerce, configurable, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,menu,attribute menu manager,attr menu,wc attr menu, wc attribute menu manager  
 **Donate link:** https://www.paypal.me/varunsridharan23  
 **Requires at least:** 3.0  
@@ -32,16 +30,16 @@ Thats all there is to it. You will now see this template when viewing taxonomy t
 
 ## Screenshots 
 ### 1. Plugin Settings Menu
-[missing image]
+![Plugin Settings Menu](https://ps.w.org/woocommerce-attributes-menu-manager/assets/screenshot-1.png)
 
 ### 2. Settings Page
-[missing image]
+![Settings Page](https://ps.w.org/woocommerce-attributes-menu-manager/assets/screenshot-2.png)
 
 ### 3. WooCommerce New Attribute Form [Dont Forget To Check Enable Archives] 
-[missing image]
+![WooCommerce New Attribute Form [Dont Forget To Check Enable Archives] ](https://ps.w.org/woocommerce-attributes-menu-manager/assets/screenshot-3.png)
 
 ### 4. WordPress Admin Menu Page
-[missing image]
+![WordPress Admin Menu Page](https://ps.w.org/woocommerce-attributes-menu-manager/assets/screenshot-4.png)
 
 
 
